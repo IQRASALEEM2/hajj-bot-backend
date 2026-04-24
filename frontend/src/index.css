@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 39 33% 96%;
+    --foreground: 220 20% 20%;
+
+    --card: 39 30% 98%;
+    --card-foreground: 220 20% 20%;
+
+    --popover: 39 30% 98%;
+    --popover-foreground: 220 20% 20%;
+
+    --primary: 197 71% 73%;
+    --primary-foreground: 220 30% 15%;
+
+    --secondary: 145 35% 78%;
+    --secondary-foreground: 145 40% 20%;
+
+    --muted: 39 20% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 43 80% 65%;
+    --accent-foreground: 43 80% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 39 20% 85%;
+    --input: 39 20% 88%;
+    --ring: 197 71% 60%;
+
+    --radius: 1rem;
+
+    /* Custom colors */
+    --sky-soft: 197 71% 73%;
+    --sage-soft: 145 35% 78%;
+    --beige-warm: 39 33% 92%;
+    --gold-accent: 43 80% 65%;
+    --cream: 39 40% 97%;
+    --teal-deep: 180 40% 35%;
+
+    /* Gradients */
+    --gradient-islamic: linear-gradient(135deg, hsl(197 71% 85%) 0%, hsl(145 35% 85%) 100%);
+    --gradient-golden: linear-gradient(135deg, hsl(43 80% 75%) 0%, hsl(43 90% 55%) 100%);
+    --gradient-sky: linear-gradient(180deg, hsl(197 71% 90%) 0%, hsl(var(--background)) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(220 20% 20% / 0.08);
+    --shadow-glow: 0 0 30px hsl(197 71% 73% / 0.3);
+    --shadow-card: 0 2px 12px -2px hsl(220 20% 20% / 0.06);
+
+    /* Fonts */
+    --font-display: 'Amiri', serif;
+    --font-body: 'Nunito', sans-serif;
+  }
+
+  .dark {
+    --background: 220 25% 12%;
+    --foreground: 39 30% 95%;
+
+    --card: 220 25% 15%;
+    --card-foreground: 39 30% 95%;
+
+    --popover: 220 25% 15%;
+    --popover-foreground: 39 30% 95%;
+
+    --primary: 197 60% 55%;
+    --primary-foreground: 220 30% 98%;
+
+    --secondary: 145 30% 40%;
+    --secondary-foreground: 145 20% 95%;
+
+    --muted: 220 20% 20%;
+    --muted-foreground: 39 15% 65%;
+
+    --accent: 43 70% 50%;
+    --accent-foreground: 43 80% 95%;
+
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 197 60% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .gradient-islamic {
+    background: var(--gradient-islamic);
+  }
+
+  .gradient-golden {
+    background: var(--gradient-golden);
+  }
+
+  .gradient-sky {
+    background: var(--gradient-sky);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Islamic pattern overlay */
+  .islamic-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c7a855' fill-opacity='0.08'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Geometric star pattern */
+  .star-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2387CEEB' stroke-opacity='0.15' stroke-width='1'%3E%3Cpath d='M40 0L50 30L80 40L50 50L40 80L30 50L0 40L30 30Z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(43 80% 65% / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(43 80% 65% / 0.5);
+  }
+}
