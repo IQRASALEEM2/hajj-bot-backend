@@ -1,0 +1,15 @@
+langchain
+langchain-chroma
+chromadb
+sentence-transformers
+flask
+flask-cors
+python-dotenv
+google-generativeai
+langdetect
+fastapi
+uvicorn
+python-multipart
+deep-translator
+langchain-huggingface
+langchain-community
