@@ -34,7 +34,7 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "apiUrl": "http://192.168.0.105:5000",
+      "apiUrl": "http://YOUR_BACKEND_HOST:5000",
       "brandTitle": "Ziya ul Harmayn",
       "eas": {
         "projectId": "replace-with-your-eas-project-id"

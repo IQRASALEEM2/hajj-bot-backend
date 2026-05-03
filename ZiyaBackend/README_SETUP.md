@@ -7,69 +7,104 @@
 
 ## Backend Setup (FastAPI)
 
-1. **Create `.env` file** in the project root:
-   ```
-   # Optional (only used for non-Urdu translations)
-   OPENAI_API_KEY=your_actual_openai_api_key_here
-   OPENAI_MODEL=gpt-5-mini
-   ```
+### 1. Create `.env` file
+Create `.env` in the `ZiyaBackend` folder:
+```bash
+cd ZiyaBackend
+copy .env.example .env
+```
+Then edit `.env`:
+```env
+OPENAI_API_KEY=your_actual_openai_api_key_here
+OPENAI_MODEL=gpt-5-mini
+```
 
-2. **Install Python dependencies** (if not already done):
-   ```bash
-   venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
+### 2. Create and activate virtual environment
+```bash
+cd ZiyaBackend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-3. **Start API server**:
-   ```bash
-   python -m uvicorn chatbot:app --host 0.0.0.0 --port 5000
-   ```
-   Or double-click `start_server.bat`
-   
-   Server will run on: `http://localhost:5000` or `http://<your-ip>:5000`
+### 3. Run the API server locally
+```bash
+cd ZiyaBackend
+venv\Scripts\activate
+python -m uvicorn chatbot:app --host 0.0.0.0 --port 5000
+```
+Server will run on: `http://localhost:5000`
+
+### 4. Developer tooling
+Install developer tools inside the backend virtual environment:
+```bash
+pip install -r requirements-dev.txt
+```
+Then you can run:
+```bash
+isort .
+black .
+```
+
+## Docker support
+Build a production-ready image for AWS or any container host:
+```bash
+cd ZiyaBackend
+docker build -t ziya-backend .
+```
+Run it locally:
+```bash
+docker run -p 5000:5000 ziya-backend
+```
+
+## AWS deployment notes
+This project is ready for AWS deployment using EC2, ECS, or App Runner.
+- Use the `ZiyaBackend/Dockerfile` to build a container image.
+- Keep `.env` and `ZiyaBackend/venv/` out of source control.
+- The backend can rebuild the vector database from `product_files/product_catalog.json` if `ziya_vector_db/` is not present.
+- See `../AWS_DEPLOYMENT.md` for EC2-specific commands and instance setup.
 
 ## Mobile App Setup (React Native/Expo)
+### 1. Navigate to mobile directory
+```bash
+cd mobile
+```
 
-1. **Navigate to mobile directory**:
-   ```bash
-   cd mobile
-   ```
+### 2. Install dependencies
+```bash
+npm install
+```
 
-2. **Install dependencies** (if not already done):
-   ```bash
-   npm install
-   ```
+### 3. Configure the backend URL
+Open `mobile/app.json` and update `extra.apiUrl` to your deployed backend host:
+```json
+"apiUrl": "http://YOUR_BACKEND_HOST:5000"
+```
 
-3. **Update API URL** in `mobile/app.json`:
-   - Change `apiUrl` to match your computer's IP address
-   - Current: `http://192.168.0.107:5000`
+### 4. Start Expo
+```bash
+npm start
+```
 
-4. **Start Expo**:
-   ```bash
-   npm start
-   ```
-
-5. **Run on device**:
-   - Scan QR code with Expo Go app (iOS/Android)
-   - Or press `a` for Android emulator
-   - Or press `w` for web browser
+### 5. Run on device
+- Scan QR code with Expo Go app (iOS/Android)
+- Or press `a` for Android emulator
+- Or press `w` for web browser
 
 ## Troubleshooting
 
-### Flask server won't start:
+### Server won't start
 - Make sure `venv` is activated and dependencies are installed
-- If you want translations, check `.env` has `OPENAI_API_KEY`
-- Make sure port 5000 is not in use
-- Check Python virtual environment is activated
+- Ensure `OPENAI_API_KEY` is set in `.env`
+- Make sure port 5000 is available
 
-### Mobile app can't connect:
-- Ensure Flask server is running
-- Check firewall allows port 5000
-- Verify IP address in `mobile/app.json` matches your computer's IP
-- Make sure both devices are on the same network
+### Mobile app can't connect
+- Verify backend is running and reachable from your device
+- Update `mobile/app.json` to the deployed backend address
+- Ensure firewall/security groups allow port 5000
 
-### Voice features not working:
-- Voice requires a development build (not Expo Go)
-- Use text input for testing in Expo Go
-- For full voice support, build with: `npx expo prebuild` and `npx expo run:android`
+### Deployment issues
+- Do not commit `.env`
+- Do not commit `venv/` or `ziya_vector_db/`
+- Use Docker or AWS deployment service for production
 

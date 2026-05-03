@@ -1,0 +1,29 @@
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+  \./|       # relative paths
+  \.
+  venv
+  |\.venv
+  |build
+  |dist
+  |_archives
+  |\.git
+  |\.hg
+  |\.mypy_cache
+  |\.tox
+  |\.venv
+  |venv
+  |\.eggs
+  |\.pytest_cache
+  )/
+'''
+skip-string-normalization = true
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_first_party = ["ZiyaBackend"]
+default_section = "THIRDPARTY"
